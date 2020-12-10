@@ -48,6 +48,8 @@
 #' }
 #' @param pca_center if applicable, a logical value indicating whether the variables should be shifted to be zero centered (see \code{\link{prcomp}} for more details). Default is \code{TRUE}.
 #' @param pca_scale if applicable, a logical value indicating whether the variables should be scaled to have unit variance before the analysis takes place (see \code{\link{prcomp}} for details). Default is \code{TRUE}.
+#' @param spca_center if applicable, a logical value indicating whether the variables should be shifted to be zero centered. Default is \code{TRUE}.
+#' @param spca_scale if applicable, a logical value indicating whether the variables should be scaled to have unit variance before the analysis takes place. Default is \code{TRUE}.
 #' @param is_dist_matrix a logical value indicating whether the \code{data} argument is a distance matrix. If \code{TRUE} then the lower triangular portion of \code{data} will be extracted and be used in the multimodality test.
 #' @param completecase a logical value indicating whether a complete case analysis should be performed. For both tests, missing data must be removed before the test can be performed. This can be done manually by the user or by setting \code{completecase = TRUE}.
 #' @param d_simulatepvalue for Dip Test, a logical value indicating whether \eqn{p}~values should be obtained via Monte Carlo simulation (see \code{\link{dip.test}} for details).
@@ -99,6 +101,7 @@
 #' @export
 clusterabilitytest <- function(data, test, reduction = "pca", distance_metric = "euclidean",
                                 distance_standardize = "std", pca_center = TRUE, pca_scale = TRUE,
+                                spca_center = TRUE, spca_scale = TRUE,
                                 is_dist_matrix = FALSE, completecase = FALSE, d_simulatepvalue = FALSE,
                                 d_reps = 2000, s_m = 999, s_adjust = TRUE, s_digits = 6, s_setseed = NULL, s_outseed = FALSE) {
 
@@ -149,6 +152,8 @@ clusterabilitytest <- function(data, test, reduction = "pca", distance_metric = 
   # Perform dimension reduction if requested
   if (identical(reduction, "PCA")) {
     data <- performpca(data, pca_center, pca_scale)
+  } else if (identical(reduction, "SPCA")) {
+    data <- performspca(data, spca_center, spca_scale)
   } else if (identical(reduction, "DISTANCE")) {
     data <- computedistances(data, distance_metric)
   } else if (is_dist_matrix) {
@@ -174,6 +179,9 @@ clusterabilitytest <- function(data, test, reduction = "pca", distance_metric = 
   } else if (identical(reduction, "PCA")) {
     arglist$pca_center <- pca_center
     arglist$pca_scale <- pca_scale
+  } else if (identical(reduction, "SPCA")) {
+    arglist$spca_center <- spca_center
+    arglist$spca_scale <- spca_scale
   }
 
   if (identical(test, "DIP")) {
