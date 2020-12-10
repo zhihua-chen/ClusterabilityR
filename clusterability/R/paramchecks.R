@@ -103,7 +103,7 @@ validate_reduction <- function(reduction) {
     return(toupper(reduction))
   }
   else {
-    warning("Invalid reduction method was used. No reduction was performed. The 'reduction' argument must be \"PCA\", \"DISTANCE\", or \"NONE\"")
+    warning("Invalid reduction method was used. No reduction was performed. The 'reduction' argument must be \"PCA\", \"SPCA\", \"DISTANCE\", or \"NONE\"")
     return("NONE")
   }
 }
