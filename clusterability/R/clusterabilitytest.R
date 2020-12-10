@@ -282,6 +282,8 @@ print.clusterability <- function(x, ...) {
     cat("\n")
   } else if(identical(toupper(x$arglist$reduction), 'PCA')) {
     cat('Data Reduced Using: PCA\n')
+  }  else if(identical(toupper(x$arglist$reduction), 'SPCA')) {
+    cat('Data Reduced Using: SPCA\n')
   }
 
   # Test name and results
