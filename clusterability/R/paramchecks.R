@@ -95,7 +95,7 @@ validate_metric <- function(metric, x) {
 
 # Validates the 'reduction' argument and returns an uppercase version of it
 validate_reduction <- function(reduction) {
-  valid_reduction <- c("PCA", "DISTANCE", "NONE")
+  valid_reduction <- c("PCA", "SPCA", "DISTANCE", "NONE")
   isvalid <- tryCatch(isTRUE((!is.null(reduction) & (toupper(reduction) %in% valid_reduction))),
                       error = function(e) return(FALSE))
 
