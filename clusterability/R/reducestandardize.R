@@ -34,6 +34,24 @@ performpca <- function(x, center, scale) {
   }
 }
 
+# Compute and return the scores for the first sparse principal component in sPCA
+# center = TRUE/FALSE
+# scale = TRUE/FALSE
+performspca <- function(x, center, scale) {
+  spcaresult <- sparsepca::spca(x, k=1, alpha=1e-3, beta=1e-3, center = center, scale = scale, verbose=0)
+  
+  # Because different machines or implementations of sparse PCA can yield
+  # differently signed rotation matrices, and thus scores,
+  # we multiply all scores by -1 if the first loading is negative.
+  # This should ensure consistent results across machines and between SAS and R implementations,
+  # assuming the variables are ordered the same.
+  
+  if(spcaresult$loadings[1, 1] < 0) {
+    return(-1 * spcaresult$scores[,1])
+  } else {
+    return(spcaresult$scores[,1])
+  }
+}
 # Compute pairwise distances and return a vector of distances
 computedistances <- function(x, method) {
   ### Supported by default in dist() function ###
