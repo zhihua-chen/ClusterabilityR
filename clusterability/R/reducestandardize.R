@@ -42,13 +42,18 @@ performspca <- function(x, center, scale) {
 
   # Because different machines or implementations of sparse PCA can yield
   # differently signed rotation matrices, and thus scores,
-  # we multiply all scores by -1 if the first nonzero loading is negative.
+  # we multiply all scores by -1 if the first loading is negative.
   # This should ensure consistent results across machines and between SAS and R implementations,
   # assuming the variables are ordered the same.
 
-  first.loadings <- spcaresult$loadings[1,]
-  first.nonzero.loading <- first.loadings[first.loadings!=0][1]
-  if( !is.na(first.nonzero.loading) & first.nonzero.loading < 0)
+  # code snippet for using first "nonzero" loading
+  #
+  # first.loadings <- spcaresult$loadings[1,]
+  # first.nonzero.loading <- first.loadings[first.loadings!=0][1]
+  # if( !is.na(first.nonzero.loading) & first.nonzero.loading < 0)
+
+
+  if(spcaresult$loadings[1, 1] < 0) {
     return(-1 * spcaresult$scores[,1])
   } else {
     return(spcaresult$scores[,1])
