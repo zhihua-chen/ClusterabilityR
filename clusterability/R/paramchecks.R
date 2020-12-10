@@ -147,6 +147,15 @@ validate_pca_scale <- function(scale) {
   return(validate_boolean(scale, "pca_scale", TRUE))
 }
 
+# In the case of SPCA, need the "spca_center" and "spca_scale" to be logical type
+validate_spca_center <- function(center) {
+  return(validate_boolean(center, "spca_center", TRUE))
+}
+
+validate_spca_scale <- function(scale) {
+  return(validate_boolean(scale, "spca_scale", TRUE))
+}
+
 validate_completecase <- function(cc) {
   return(validate_boolean(cc, "completecase", FALSE))
 }

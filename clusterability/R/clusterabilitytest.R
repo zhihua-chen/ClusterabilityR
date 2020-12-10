@@ -123,6 +123,8 @@ clusterabilitytest <- function(data, test, reduction = "pca", distance_metric = 
   reduction <- validate_reduction(reduction)
   pca_center <- validate_pca_center(pca_center)
   pca_scale <- validate_pca_scale(pca_scale)
+  spca_center <- validate_spca_center(spca_center)
+  spca_scale <- validate_spca_scale(spca_scale)
   is_dist_matrix <- validate_isdistmatrix(is_dist_matrix, reduction, data)
   distance_metric <- validate_metric(distance_metric, data)
   distance_standardize <- validate_standardize(distance_standardize)
