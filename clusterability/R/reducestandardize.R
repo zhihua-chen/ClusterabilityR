@@ -34,24 +34,9 @@ performpca <- function(x, center, scale) {
   }
 }
 
-# Compute and return the scores for the first sparse principal component in sPCA
-# center = TRUE/FALSE
-# scale = TRUE/FALSE
-# method = SPARSEPCA/ELASTICNET
-performspca <- function(x, center, scale, method) {
-  switch (method,
-          "SPARSEPCA" = performspca.sparsepca(x, center, scale),
-          "ELASTICNET" = performspca.elasticnet(x, center, scale)
-  )
-}
 
-# Compute and return the scores for the first sparse principal component in sPCA
-#    using the SPARSEPCA implementation
-# center = TRUE/FALSE
-# scale = TRUE/FALSE
-
-performspca.sparsepca <- function(x, center, scale) {
-  spcaresult <- sparsepca::spca(x, k=1, alpha=1e-3, beta=1e-3, center = center, scale = scale, verbose=0)
+performspca.sparsepca <- function(x, center, scale, alpha, beta) {
+  spcaresult <- sparsepca::spca(x, k=1, alpha=alpha, beta=beta, center = center, scale = scale, verbose=0)
 
   # Because different machines or implementations of sparse PCA can yield
   # differently signed rotation matrices, and thus scores,
@@ -79,16 +64,12 @@ performspca.sparsepca <- function(x, center, scale) {
 # scale = TRUE/FALSE
 
 
-performspca.elasticnet <- function(x, center=NULL, scale=NULL) {
-  # elasticnet spca uses its own rules for centering and scaling. So we ignore the centering and scaling
-  # parameters
-  if(!is.null(center) | !is.null(scale)) {
-    warning("Centering and scaling is controlled internally by elasticnet. These parameters will be ignored.")
-  }
+performspca.elasticnet <- function(x, para, lambda) {
+  # elasticnet spca uses its own rules for centering and scaling.
+
   sparse="penalty"
-  para.penalty=0.01
-  spcaresult <- elasticnet::spca(x, 1, para.penalty, type="predictor",
-       sparse=sparse, use.corr=FALSE, lambda=1e-6,
+  spcaresult <- elasticnet::spca(x, 1, para, type="predictor",
+       sparse=sparse, use.corr=FALSE, lambda=lambda,
        max.iter=200, trace=FALSE, eps.conv=1e-3)
   # Because different machines or implementations of sparse PCA can yield
   # differently signed rotation matrices, and thus scores,

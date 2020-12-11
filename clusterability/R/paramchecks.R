@@ -147,18 +147,11 @@ validate_pca_scale <- function(scale) {
   return(validate_boolean(scale, "pca_scale", TRUE))
 }
 
-# In the case of SPCA, need the "spca_center" and "spca_scale" to be logical type
-validate_spca_center <- function(center) {
-  return(validate_boolean(center, "spca_center", TRUE))
-}
 
-validate_spca_scale <- function(scale) {
-  return(validate_boolean(scale, "spca_scale", TRUE))
-}
 
 # Validates the 'spca_method' argument and returns an uppercase version of it
 validate_spca_method <- function(spca_method) {
-  valid_spca_method <- c("SPARSEPCA", "ELASTICNET")
+  valid_spca_method <- c("EN", "VP")
   isvalid <- tryCatch(isTRUE((!is.null(spca_method) & (toupper(spca_method) %in% valid_spca_method))),
                       error = function(e) return(FALSE))
 
@@ -166,10 +159,21 @@ validate_spca_method <- function(spca_method) {
     return(toupper(spca_method))
   }
   else {
-    stop("Invalid spca method was used. The 'spca_method' argument must be \"SPARSEPCA\" or \"ELASTICNET\"")
+    stop("Invalid spca method was used. The 'spca_method' argument must be \"EN\" or \"VP\"")
   }
 }
 
+# In the case of SPCA VP, need the "spca_center" and "spca_scale" to be logical type
+validate_spca_VP_center <- function(center) {
+  return(validate_boolean(center, "spca_VP_center", TRUE))
+}
+
+validate_spca_VP_scale <- function(scale) {
+  return(validate_boolean(scale, "spca_VP_scale", TRUE))
+}
+
+
+# todo add VP_alpha VP_beta EN_para EN_lambda checks
 
 validate_completecase <- function(cc) {
   return(validate_boolean(cc, "completecase", FALSE))
