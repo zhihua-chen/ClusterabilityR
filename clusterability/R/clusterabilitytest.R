@@ -102,6 +102,7 @@
 clusterabilitytest <- function(data, test, reduction = "pca", distance_metric = "euclidean",
                                 distance_standardize = "std", pca_center = TRUE, pca_scale = TRUE,
                                 spca_center = TRUE, spca_scale = TRUE,
+                                spca_method = "elasticnet",
                                 is_dist_matrix = FALSE, completecase = FALSE, d_simulatepvalue = FALSE,
                                 d_reps = 2000, s_m = 999, s_adjust = TRUE, s_digits = 6, s_setseed = NULL, s_outseed = FALSE) {
 
@@ -125,6 +126,7 @@ clusterabilitytest <- function(data, test, reduction = "pca", distance_metric = 
   pca_scale <- validate_pca_scale(pca_scale)
   spca_center <- validate_spca_center(spca_center)
   spca_scale <- validate_spca_scale(spca_scale)
+  spca_method <- validate_spca_method(spca_method)
   is_dist_matrix <- validate_isdistmatrix(is_dist_matrix, reduction, data)
   distance_metric <- validate_metric(distance_metric, data)
   distance_standardize <- validate_standardize(distance_standardize)
@@ -155,7 +157,7 @@ clusterabilitytest <- function(data, test, reduction = "pca", distance_metric = 
   if (identical(reduction, "PCA")) {
     data <- performpca(data, pca_center, pca_scale)
   } else if (identical(reduction, "SPCA")) {
-    data <- performspca(data, spca_center, spca_scale)
+    data <- performspca(data, spca_center, spca_scale, spca_method)
   } else if (identical(reduction, "DISTANCE")) {
     data <- computedistances(data, distance_metric)
   } else if (is_dist_matrix) {
@@ -184,6 +186,7 @@ clusterabilitytest <- function(data, test, reduction = "pca", distance_metric = 
   } else if (identical(reduction, "SPCA")) {
     arglist$spca_center <- spca_center
     arglist$spca_scale <- spca_scale
+    arglist$spca_method <- spca_method
   }
 
   if (identical(test, "DIP")) {

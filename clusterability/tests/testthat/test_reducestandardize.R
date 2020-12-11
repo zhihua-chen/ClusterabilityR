@@ -68,7 +68,7 @@ test_that("computedistances", {
   expect_equal(computedistances(test2, "corr"), true_corr, tolerance = 1e-14)
 })
 
-test_that("performpca", {
+test_that("performpca.sparsepca", {
   # Setup
   test2 <- matrix(c(1, 4, 8, 2, 4, 0, 9, 7, 7), nrow = 3)
 
@@ -95,14 +95,50 @@ test_that("performpca", {
   expect_equal(pca_n, tpca_n, tolerance = 1e-14)
 })
 
+test_that("performspca.elasticnet", {
+  # Setup
+  test2 <- matrix(c(1, 4, 8, 2, 4, 0, 9, 7, 7), nrow = 3)
+
+  spca_cs <- performspca(test2, TRUE, TRUE, "ELASTICNET")
+  spca_c <- performspca(test2, TRUE, FALSE, "ELASTICNET")
+  spca_s <- performspca(test2, FALSE, TRUE,  "ELASTICNET")
+  spca_n <- performspca(test2, FALSE, FALSE,  "ELASTICNET")
+
+  getscore.adjustsign <-  function(x) if(x$loadings[1, 1] < 0) {
+    return(-1 * (test2 %*% spcaresult$loadings)[, 1])
+  } else {
+    return( (test2 %*% spcaresult$loadings)[, 1])
+  }
+  para.penalty = 0.01
+  sparse="penalty"
+  tspca_cs <- getscore.adjustsign(elasticnet::spca(test2, 1, para.penalty, type="predictor",
+                                                   sparse=sparse, use.corr=FALSE, lambda=1e-6,
+                                                   max.iter=200, trace=FALSE, eps.conv=1e-3))
+  tspca_c <- getscore.adjustsign(elasticnet::spca(test2, 1, para.penalty, type="predictor",
+                                                  sparse=sparse, use.corr=FALSE, lambda=1e-6,
+                                                  max.iter=200, trace=FALSE, eps.conv=1e-3))
+  tspca_s <- getscore.adjustsign(elasticnet::spca(test2, 1, para.penalty, type="predictor",
+                                                  sparse=sparse, use.corr=FALSE, lambda=1e-6,
+                                                  max.iter=200, trace=FALSE, eps.conv=1e-3))
+  tspca_n <- getscore.adjustsign(elasticnet::spca(test2, 1, para.penalty, type="predictor",
+                                                  sparse=sparse, use.corr=FALSE, lambda=1e-6,
+                                                  max.iter=200, trace=FALSE, eps.conv=1e-3))
+
+  # Test - comparing results to "known truth"
+  expect_equal(spca_cs, tspca_cs, tolerance = 1e-14)
+  expect_equal(spca_c, tspca_c, tolerance = 1e-14)
+  expect_equal(spca_s, tspca_s, tolerance = 1e-14)
+  expect_equal(spca_n, tspca_n, tolerance = 1e-14)
+})
+
 test_that("performspca", {
   # Setup
   test2 <- matrix(c(1, 4, 8, 2, 4, 0, 9, 7, 7), nrow = 3)
 
-  spca_cs <- performspca(test2, TRUE, TRUE)
-  spca_c <- performspca(test2, TRUE, FALSE)
-  spca_s <- performspca(test2, FALSE, TRUE)
-  spca_n <- performspca(test2, FALSE, FALSE)
+  spca_cs <- performspca(test2, TRUE, TRUE, "SPARSEPCA")
+  spca_c <- performspca(test2, TRUE, FALSE, "SPARSEPCA")
+  spca_s <- performspca(test2, FALSE, TRUE,  "SPARSEPCA")
+  spca_n <- performspca(test2, FALSE, FALSE,  "SPARSEPCA")
 
   adjustsign <-  function(x) if(x$loadings[1, 1] < 0) {
     return(-1 * x$scores[, 1])

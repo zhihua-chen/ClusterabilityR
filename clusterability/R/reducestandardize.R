@@ -37,7 +37,20 @@ performpca <- function(x, center, scale) {
 # Compute and return the scores for the first sparse principal component in sPCA
 # center = TRUE/FALSE
 # scale = TRUE/FALSE
-performspca <- function(x, center, scale) {
+# method = SPARSEPCA/ELASTICNET
+performspca <- function(x, center, scale, method) {
+  switch (method,
+          "SPARSEPCA" = performspca.sparsepca(x, center, scale),
+          "ELASTICNET" = performspca.elasticnet(x, center, scale)
+  )
+}
+
+# Compute and return the scores for the first sparse principal component in sPCA
+#    using the SPARSEPCA implementation
+# center = TRUE/FALSE
+# scale = TRUE/FALSE
+
+performspca.sparsepca <- function(x, center, scale) {
   spcaresult <- sparsepca::spca(x, k=1, alpha=1e-3, beta=1e-3, center = center, scale = scale, verbose=0)
 
   # Because different machines or implementations of sparse PCA can yield
@@ -59,6 +72,44 @@ performspca <- function(x, center, scale) {
     return(spcaresult$scores[,1])
   }
 }
+
+# Compute and return the scores for the first sparse principal component in sPCA
+#    using the ELASTICNET implementation
+# center = TRUE/FALSE
+# scale = TRUE/FALSE
+
+
+performspca.elasticnet <- function(x, center=NULL, scale=NULL) {
+  # elasticnet spca uses its own rules for centering and scaling. So we ignore the centering and scaling
+  # parameters
+  if(!is.null(center) | !is.null(scale)) {
+    warning("Centering and scaling is controlled internally by elasticnet. These parameters will be ignored.")
+  }
+  sparse="penalty"
+  para.penalty=0.01
+  spcaresult <- elasticnet::spca(x, 1, para.penalty, type="predictor",
+       sparse=sparse, use.corr=FALSE, lambda=1e-6,
+       max.iter=200, trace=FALSE, eps.conv=1e-3)
+  # Because different machines or implementations of sparse PCA can yield
+  # differently signed rotation matrices, and thus scores,
+  # we multiply all scores by -1 if the first loading is negative.
+  # This should ensure consistent results across machines and between SAS and R implementations,
+  # assuming the variables are ordered the same.
+
+  # code snippet for using first "nonzero" loading
+  #
+  # first.loadings <- spcaresult$loadings[1,]
+  # first.nonzero.loading <- first.loadings[first.loadings!=0][1]
+  # if( !is.na(first.nonzero.loading) & first.nonzero.loading < 0)
+
+  scores <- x %*% spcaresult$loadings
+  if(spcaresult$loadings[1, 1] < 0) {
+    return(-1 * scores[,1])
+  } else {
+    return(scores[,1])
+  }
+}
+
 # Compute pairwise distances and return a vector of distances
 computedistances <- function(x, method) {
   ### Supported by default in dist() function ###

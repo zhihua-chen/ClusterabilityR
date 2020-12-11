@@ -156,6 +156,21 @@ validate_spca_scale <- function(scale) {
   return(validate_boolean(scale, "spca_scale", TRUE))
 }
 
+# Validates the 'spca_method' argument and returns an uppercase version of it
+validate_spca_method <- function(spca_method) {
+  valid_spca_method <- c("SPARSEPCA", "ELASTICNET")
+  isvalid <- tryCatch(isTRUE((!is.null(spca_method) & (toupper(spca_method) %in% valid_spca_method))),
+                      error = function(e) return(FALSE))
+
+  if(isvalid) {
+    return(toupper(spca_method))
+  }
+  else {
+    stop("Invalid spca method was used. The 'spca_method' argument must be \"SPARSEPCA\" or \"ELASTICNET\"")
+  }
+}
+
+
 validate_completecase <- function(cc) {
   return(validate_boolean(cc, "completecase", FALSE))
 }
