@@ -165,7 +165,7 @@ clusterabilitytest <- function(data, test, reduction = "pca", distance_metric = 
       data <- performspca.sparsepca(data, spca_VP_center,
                           spca_VP_scale, spca_VP_alpha, spca_VP_beta)
     } else {
-      data <- performspca.elasticnet(data, spca_EN_para, spca_EN_lamda)
+      data <- performspca.elasticnet(data, spca_EN_para, spca_EN_lambda)
     }
   } else if (identical(reduction, "DISTANCE")) {
     data <- computedistances(data, distance_metric)
