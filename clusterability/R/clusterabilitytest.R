@@ -199,8 +199,8 @@ clusterabilitytest <- function(data, test, reduction = "pca", distance_metric = 
     arglist$spca_VP_scale <- spca_VP_scale
     arglist$spca_VP_alpha <- spca_VP_alpha
     arglist$spca_VP_beta <- spca_VP_beta
-    arglist$spca_VP_para <- spca_VP_para
-    arglist$spca_VP_lambda <- spca_VP_lambda
+    arglist$spca_EN_para <- spca_EN_para
+    arglist$spca_EN_lambda <- spca_EN_lambda
 
   }
 
