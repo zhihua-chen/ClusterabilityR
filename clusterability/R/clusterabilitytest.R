@@ -164,9 +164,9 @@ clusterabilitytest <- function(data, test, reduction = "pca", distance_metric = 
     if(identical(spca_method, "VP")) {
       data <- performspca.sparsepca(data, spca_VP_center,
                           spca_VP_scale, spca_VP_alpha, spca_VP_beta)
-    } else {
+    } else if(identical(spca_method, "EN")) {
       data <- performspca.elasticnet(data, spca_EN_para, spca_EN_lambda)
-    }
+    } else {stop("Supported SPCA methods are: VP and EN ");}
   } else if (identical(reduction, "DISTANCE")) {
     data <- computedistances(data, distance_metric)
   } else if (is_dist_matrix) {
