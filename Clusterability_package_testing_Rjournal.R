@@ -34,11 +34,22 @@ norm1_dipdist <- clusterabilitytest(normals1, "dip",  distance_standardize = "NO
 norm1_silvpca <- clusterabilitytest(normals1, "silverman", s_setseed = 123)
 norm1_silvdist <- clusterabilitytest(normals1, "silverman", distance_standardize = "NONE", reduction = "distance", s_setseed = 123)
 
+norm1_dipspcaEN <- clusterabilitytest(normals1, "dip", reduction = "spca", spca_method = "EN")
+norm1_dipspcaVP <- clusterabilitytest(normals1, "dip", reduction = "spca", spca_method = "VP")
+norm1_silvspcaEN <- clusterabilitytest(normals1, "silverman", s_setseed = 123, reduction = "spca", spca_method = "EN")
+norm1_silvspcaVP <- clusterabilitytest(normals1, "silverman", s_setseed = 123, reduction = "spca", spca_method = "VP")
+
+
+
 print(norm1_dippca)
 print(norm1_dipdist)
 print(norm1_silvpca)
 print(norm1_silvdist)
 
+print(norm1_dipspcaEN)
+print(norm1_dipspcaVP)
+print(norm1_silvspcaEN)
+print(norm1_silvspcaVP)
 
 
 # Normals2 - results
@@ -49,10 +60,21 @@ norm2_dipdist <- clusterabilitytest(normals2, "dip", reduction = "distance", dis
 norm2_silvpca <- clusterabilitytest(normals2, "silverman", s_setseed = 123)
 norm2_silvdist <- clusterabilitytest(normals2, "silverman", reduction = "distance", distance_standardize = "NONE", s_setseed = 123)
 
+norm2_dipspcaEN <- clusterabilitytest(normals2, "dip", reduction = "spca", spca_method = "EN")
+norm2_dipspcaVP <- clusterabilitytest(normals2, "dip", reduction = "spca", spca_method = "VP")
+norm2_silvspcaEN <- clusterabilitytest(normals2, "silverman", s_setseed = 123, reduction = "spca", spca_method = "EN")
+norm2_silvspcaVP <- clusterabilitytest(normals2, "silverman", s_setseed = 123, reduction = "spca", spca_method = "VP")
+
+
 print(norm2_dippca)
 print(norm2_dipdist)
 print(norm2_silvpca)
 print(norm2_silvdist)
+
+print(norm2_dipspcaEN)
+print(norm2_dipspcaVP)
+print(norm2_silvspcaEN)
+print(norm2_silvspcaVP)
 
 
 
@@ -64,11 +86,21 @@ norm3_dipdist <- clusterabilitytest(normals3, "dip", reduction = "distance", dis
 norm3_silvpca <- clusterabilitytest(normals3, "silverman", s_setseed = 123)
 norm3_silvdist <- clusterabilitytest(normals3, "silverman", reduction = "distance", distance_standardize = "NONE", s_setseed = 123)
 
+norm3_dipspcaEN <- clusterabilitytest(normals3, "dip", reduction = "spca", spca_method = "EN")
+norm3_dipspcaVP <- clusterabilitytest(normals3, "dip", reduction = "spca", spca_method = "VP")
+norm3_silvspcaEN <- clusterabilitytest(normals3, "silverman", s_setseed = 123, reduction = "spca", spca_method = "EN")
+norm3_silvspcaVP <- clusterabilitytest(normals3, "silverman", s_setseed = 123, reduction = "spca", spca_method = "VP")
+
+
 print(norm3_dippca)
 print(norm3_dipdist)
 print(norm3_silvpca)
 print(norm3_silvdist)
 
+print(norm3_dipspcaEN)
+print(norm3_dipspcaVP)
+print(norm3_silvspcaEN)
+print(norm3_silvspcaVP)
 
 
 # Normals4 - results
@@ -79,11 +111,21 @@ norm4_dipdist <- clusterabilitytest(normals4, "dip", reduction = "distance", dis
 norm4_silvpca <- clusterabilitytest(normals4, "silverman", s_setseed = 123)
 norm4_silvdist <- clusterabilitytest(normals4, "silverman", reduction = "distance", distance_standardize = "NONE", s_setseed = 123)
 
+norm4_dipspcaEN <- clusterabilitytest(normals4, "dip", reduction = "spca", spca_method = "EN")
+norm4_dipspcaVP <- clusterabilitytest(normals4, "dip", reduction = "spca", spca_method = "VP")
+norm4_silvspcaEN <- clusterabilitytest(normals4, "silverman", s_setseed = 123, reduction = "spca", spca_method = "EN")
+norm4_silvspcaVP <- clusterabilitytest(normals4, "silverman", s_setseed = 123, reduction = "spca", spca_method = "VP")
+
+
 print(norm4_dippca)
 print(norm4_dipdist)
 print(norm4_silvpca)
 print(norm4_silvdist)
 
+print(norm4_dipspcaEN)
+print(norm4_dipspcaVP)
+print(norm4_silvspcaEN)
+print(norm4_silvspcaVP)
 
 
 # Normals5 - results
@@ -94,11 +136,22 @@ norm5_dipdist <- clusterabilitytest(normals5, "dip", reduction = "distance", dis
 norm5_silvpca <- clusterabilitytest(normals5, "silverman", s_setseed = 123, s_digits = 20)
 norm5_silvdist <- clusterabilitytest(normals5, "silverman", reduction = "distance", distance_standardize = "NONE", s_setseed = 123)
 
+
+norm5_dipspcaEN <- clusterabilitytest(normals5, "dip", reduction = "spca", spca_method = "EN")
+norm5_dipspcaVP <- clusterabilitytest(normals5, "dip", reduction = "spca", spca_method = "VP")
+norm5_silvspcaEN <- clusterabilitytest(normals5, "silverman", s_setseed = 123, reduction = "spca", spca_method = "EN")
+norm5_silvspcaVP <- clusterabilitytest(normals5, "silverman", s_setseed = 123, reduction = "spca", spca_method = "VP")
+
+
 print(norm5_dippca)
 print(norm5_dipdist)
 print(norm5_silvpca)
 print(norm5_silvdist)
 
+print(norm5_dipspcaEN)
+print(norm5_dipspcaVP)
+print(norm5_silvspcaEN)
+print(norm5_silvspcaVP)
 
 
 # cars - results
@@ -109,11 +162,21 @@ cars_dipdist <- clusterabilitytest(cars, "dip", reduction = "distance", distance
 cars_silvpca <- clusterabilitytest(cars, "silverman", s_setseed = 123)
 cars_silvdist <- clusterabilitytest(cars, "silverman", reduction = "distance", distance_standardize = "NONE", s_setseed = 123)
 
+cars_dipspcaEN <- clusterabilitytest(cars, "dip", reduction = "spca", spca_method = "EN")
+cars_dipspcaVP <- clusterabilitytest(cars, "dip", reduction = "spca", spca_method = "VP")
+cars_silvspcaEN <- clusterabilitytest(cars, "silverman", s_setseed = 123, reduction = "spca", spca_method = "EN")
+cars_silvspcaVP <- clusterabilitytest(cars, "silverman", s_setseed = 123, reduction = "spca", spca_method = "VP")
+
+
 print(cars_dippca)
 print(cars_dipdist)
 print(cars_silvpca)
 print(cars_silvdist)
 
+print(cars_dipspcaEN)
+print(cars_dipspcaVP)
+print(cars_silvspcaEN)
+print(cars_silvspcaVP)
 
 
 # iris - results
@@ -124,10 +187,22 @@ iris_dipdist <- clusterabilitytest(newiris, "dip", reduction = "distance", dista
 iris_silvpca <- clusterabilitytest(newiris, "silverman", s_setseed = 123)
 iris_silvdist <- clusterabilitytest(newiris, "silverman", reduction = "distance", distance_standardize = "NONE", s_setseed = 123)
 
+iris_dipspcaEN <- clusterabilitytest(newiris, "dip", reduction = "spca", spca_method = "EN")
+iris_dipspcaVP <- clusterabilitytest(newiris, "dip", reduction = "spca", spca_method = "VP")
+iris_silvspcaEN <- clusterabilitytest(newiris, "silverman", s_setseed = 123, reduction = "spca", spca_method = "EN")
+iris_silvspcaVP <- clusterabilitytest(newiris, "silverman", s_setseed = 123, reduction = "spca", spca_method = "VP")
+
 print(iris_dippca)
 print(iris_dipdist)
 print(iris_silvpca)
 print(iris_silvdist)
+
+print(iris_dipspcaEN)
+print(iris_dipspcaVP)
+print(iris_silvspcaEN)
+print(iris_silvspcaVP)
+
+
 ####################################################
 # Timings for the clusterability R package
 
@@ -151,21 +226,21 @@ print(iris_silvdist)
 library(clusterability)
 ntimes <- 10
 
-testandprint <- function(data, test, reduction, seed) {
+testandprint <- function(data, test, reduction, seed, spca_method="EN") {
   starttime <- Sys.time()
   if(test == "dip"){
     for (i in 1:ntimes) {
-      clusterabilitytest(data, "dip", reduction)
+      clusterabilitytest(data, "dip", reduction, spca_method=spca_method)
     }
-    
+
   } else if(test == "silverman") {
     for (i in 1:ntimes) {
-      clusterabilitytest(data, "silverman", reduction, distance_standardize = "NONE", s_setseed = seed)
+      clusterabilitytest(data, "silverman", reduction, spca_method=spca_method, distance_standardize = "NONE", s_setseed = seed)
     }
   } else {
     stop("Invalid test")
   }
-  
+
   endtime <- Sys.time()
   print(endtime - starttime)
 }
@@ -178,6 +253,10 @@ testandprint(normals1, "dip", "distance", NULL)
 testandprint(normals1, "silverman", "pca", 123)
 testandprint(normals1, "silverman", "distance", 123)
 
+testandprint(normals1, "dip", "spca", NULL, "EN")
+testandprint(normals1, "dip", "spca", NULL, "VP")
+testandprint(normals1, "silverman", "spca", NULL, "EN")
+testandprint(normals1, "silverman", "spca", NULL, "VP")
 
 ##### normals2 #####
 data(normals2)
@@ -187,6 +266,10 @@ testandprint(normals2, "dip", "distance", NULL)
 testandprint(normals2, "silverman", "pca", 123)
 testandprint(normals2, "silverman", "distance", 123)
 
+testandprint(normals2, "dip", "spca", NULL, "EN")
+testandprint(normals2, "dip", "spca", NULL, "VP")
+testandprint(normals2, "silverman", "spca", NULL, "EN")
+testandprint(normals2, "silverman", "spca", NULL, "VP")
 
 ##### normals3 #####
 data(normals3)
@@ -195,6 +278,11 @@ testandprint(normals3, "dip", "pca", NULL)
 testandprint(normals3, "dip", "distance", NULL)
 testandprint(normals3, "silverman", "pca", 123)
 testandprint(normals3, "silverman", "distance", 123)
+
+testandprint(normals3, "dip", "spca", NULL, "EN")
+testandprint(normals3, "dip", "spca", NULL, "VP")
+testandprint(normals3, "silverman", "spca", NULL, "EN")
+testandprint(normals3, "silverman", "spca", NULL, "VP")
 
 
 ##### normals4 #####
@@ -205,6 +293,10 @@ testandprint(normals4, "dip", "distance", NULL)
 testandprint(normals4, "silverman", "pca", 123)
 testandprint(normals4, "silverman", "distance", 123)
 
+testandprint(normals4, "dip", "spca", NULL, "EN")
+testandprint(normals4, "dip", "spca", NULL, "VP")
+testandprint(normals4, "silverman", "spca", NULL, "EN")
+testandprint(normals4, "silverman", "spca", NULL, "VP")
 
 ##### normals5 #####
 data(normals5)
@@ -214,12 +306,23 @@ testandprint(normals5, "dip", "distance", NULL)
 testandprint(normals5, "silverman", "pca", 123)
 testandprint(normals5, "silverman", "distance", 123)
 
+testandprint(normals5, "dip", "spca", NULL, "EN")
+testandprint(normals5, "dip", "spca", NULL, "VP")
+testandprint(normals5, "silverman", "spca", NULL, "EN")
+testandprint(normals5, "silverman", "spca", NULL, "VP")
+
 ##### cars #####
 data(cars)
 testandprint(cars, "dip", "pca", NULL)
 testandprint(cars, "dip", "distance", NULL)
 testandprint(cars, "silverman", "pca", 123)
 testandprint(cars, "silverman", "distance", 123)
+
+testandprint(cars, "dip", "spca", NULL, "EN")
+testandprint(cars, "dip", "spca", NULL, "VP")
+testandprint(cars, "silverman", "spca", NULL, "EN")
+testandprint(cars, "silverman", "spca", NULL, "VP")
+
 
 ##### iris #####
 data(iris)
@@ -229,3 +332,7 @@ testandprint(iris_numeric, "dip", "distance", NULL)
 testandprint(iris_numeric, "silverman", "pca", 123)
 testandprint(iris_numeric, "silverman", "distance", 123)
 
+testandprint(iris_numeric, "dip", "spca", NULL, "EN")
+testandprint(iris_numeric, "dip", "spca", NULL, "VP")
+testandprint(iris_numeric, "silverman", "spca", NULL, "EN")
+testandprint(iris_numeric, "silverman", "spca", NULL, "VP")
