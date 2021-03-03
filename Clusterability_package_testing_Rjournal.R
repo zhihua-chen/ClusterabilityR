@@ -255,8 +255,8 @@ testandprint(normals1, "silverman", "distance", 123)
 
 testandprint(normals1, "dip", "spca", NULL, "EN")
 testandprint(normals1, "dip", "spca", NULL, "VP")
-testandprint(normals1, "silverman", "spca", NULL, "EN")
-testandprint(normals1, "silverman", "spca", NULL, "VP")
+testandprint(normals1, "silverman", "spca", 123, "EN")
+testandprint(normals1, "silverman", "spca", 123, "VP")
 
 ##### normals2 #####
 data(normals2)
@@ -268,8 +268,8 @@ testandprint(normals2, "silverman", "distance", 123)
 
 testandprint(normals2, "dip", "spca", NULL, "EN")
 testandprint(normals2, "dip", "spca", NULL, "VP")
-testandprint(normals2, "silverman", "spca", NULL, "EN")
-testandprint(normals2, "silverman", "spca", NULL, "VP")
+testandprint(normals2, "silverman", "spca", 123, "EN")
+testandprint(normals2, "silverman", "spca", 123, "VP")
 
 ##### normals3 #####
 data(normals3)
@@ -281,8 +281,8 @@ testandprint(normals3, "silverman", "distance", 123)
 
 testandprint(normals3, "dip", "spca", NULL, "EN")
 testandprint(normals3, "dip", "spca", NULL, "VP")
-testandprint(normals3, "silverman", "spca", NULL, "EN")
-testandprint(normals3, "silverman", "spca", NULL, "VP")
+testandprint(normals3, "silverman", "spca", 123, "EN")
+testandprint(normals3, "silverman", "spca", 123, "VP")
 
 
 ##### normals4 #####
@@ -295,8 +295,8 @@ testandprint(normals4, "silverman", "distance", 123)
 
 testandprint(normals4, "dip", "spca", NULL, "EN")
 testandprint(normals4, "dip", "spca", NULL, "VP")
-testandprint(normals4, "silverman", "spca", NULL, "EN")
-testandprint(normals4, "silverman", "spca", NULL, "VP")
+testandprint(normals4, "silverman", "spca", 123, "EN")
+testandprint(normals4, "silverman", "spca", 123, "VP")
 
 ##### normals5 #####
 data(normals5)
@@ -308,8 +308,8 @@ testandprint(normals5, "silverman", "distance", 123)
 
 testandprint(normals5, "dip", "spca", NULL, "EN")
 testandprint(normals5, "dip", "spca", NULL, "VP")
-testandprint(normals5, "silverman", "spca", NULL, "EN")
-testandprint(normals5, "silverman", "spca", NULL, "VP")
+testandprint(normals5, "silverman", "spca", 123, "EN")
+testandprint(normals5, "silverman", "spca", 123, "VP")
 
 ##### cars #####
 data(cars)
@@ -320,8 +320,8 @@ testandprint(cars, "silverman", "distance", 123)
 
 testandprint(cars, "dip", "spca", NULL, "EN")
 testandprint(cars, "dip", "spca", NULL, "VP")
-testandprint(cars, "silverman", "spca", NULL, "EN")
-testandprint(cars, "silverman", "spca", NULL, "VP")
+testandprint(cars, "silverman", "spca", 123, "EN")
+testandprint(cars, "silverman", "spca", 123, "VP")
 
 
 ##### iris #####
@@ -334,5 +334,5 @@ testandprint(iris_numeric, "silverman", "distance", 123)
 
 testandprint(iris_numeric, "dip", "spca", NULL, "EN")
 testandprint(iris_numeric, "dip", "spca", NULL, "VP")
-testandprint(iris_numeric, "silverman", "spca", NULL, "EN")
-testandprint(iris_numeric, "silverman", "spca", NULL, "VP")
+testandprint(iris_numeric, "silverman", "spca", 123, "EN")
+testandprint(iris_numeric, "silverman", "spca", 123, "VP")
